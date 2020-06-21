@@ -55,7 +55,7 @@ class VilleController {
 	// Methode POST
 		@RequestMapping(value = "/ville", method = RequestMethod.POST)
 		@ResponseBody
-		public void appelPost(@RequestBody Ville ville) {
+		public void appelPost(@RequestBody Ville ville) throws SQLException {
 			System.out.println("Appel POST");
 			
 			
@@ -66,7 +66,7 @@ class VilleController {
 	// Methode PUT
 		@RequestMapping(value = "/ville", method = RequestMethod.PUT)
 		@ResponseBody
-		public void appelPut(@RequestBody Ville ville, String codeCommuneIni) {
+		public void appelPut(@RequestBody Ville ville, String codeCommuneIni) throws SQLException {
 			System.out.println("Appel PUT");
 			
 			

@@ -14,16 +14,18 @@ import com.dto.Ville;
 @Repository
 public class VilleDAOImpl implements VilleDAO {
 	
-	public ArrayList<Ville> getInfoVille() {
+	public ArrayList<Ville> getInfoVille() throws SQLException {
 		ArrayList<Ville> listVille = new ArrayList<Ville>();
 		
 		Connection connection = JDBCConfiguration.getConnection();
 		
+		ResultSet results = null;
+		Statement stmt = null;
 		String requete = "SELECT * FROM ville_france";
 
 		try {
-		   Statement stmt = connection.createStatement();
-		   ResultSet results = stmt.executeQuery(requete);
+		   stmt = connection.createStatement();
+		   results = stmt.executeQuery(requete);
 		   
 		   while (results.next()) {
 			   Ville ville = new Ville();
@@ -42,38 +44,50 @@ public class VilleDAOImpl implements VilleDAO {
 		   
 		} catch (SQLException e) {
 		   //traitement de l'exception
-		} 
+		} finally {
+			results.close();
+			stmt.close();
+		}
 		
 		return listVille;
 	}
 	
-	public void creerVille(Ville ville) {
+	public void creerVille(Ville ville) throws SQLException {
 		
 		String requete = "INSERT INTO ville_france ('Code_commune_INSEE', 'Nom_commune', 'Libelle_acheminement', 'Code_postal', 'Latitude', 'Ligne_5', 'Longitude') "
 				+ "VALUES (" + ville.getCodeCommune() + ", " + ville.getNomCommune() + ", " + ville.getLibelleAcheminement() + ", " + ville.getCodePostal() + ", " + ville.getLatitude() + ", " + 
 				ville.getLigne_5() + ", " + ville.getLongitude() + ")";
 
+		Connection connection = null;
+		Statement stmt = null;
+		
 		try {
-		   Connection connection = JDBCConfiguration.getConnection();
-		   Statement stmt = connection.createStatement();
+		   connection = JDBCConfiguration.getConnection();
+		   stmt = connection.createStatement();
 		   stmt.executeUpdate(requete);
 		} catch (SQLException e) {
 		   //traitement de l'exception
-		} 
+		} finally {
+			stmt.close();
+		}
 		
 	}
 	
-	public void modifierVille(Ville ville, String codeCommuneIni) {
+	public void modifierVille(Ville ville, String codeCommuneIni) throws SQLException {
 		
 		String requete = "UPDATE ville_france SET Code_commune_INSEE = 'ville.getCodeCommune()', Nom_commune = 'ville.getNomCommune()', Libelle_acheminement = 'ville.getLibelleAcheminement()', Code_postal = 'ville.getCodePostal()', Latitude = 'ville.getLatitude()', Ligne_5 = 'ville.getLigne_5()', Longitude = 'ville.getLongitude()' WHERE Code_commune_INSEE = codeCommuneIni ";
 		
+		Statement stmt = null;
+		
 		try {
 			   Connection connection = JDBCConfiguration.getConnection();
-			   Statement stmt = connection.createStatement();
+			   stmt = connection.createStatement();
 			   stmt.executeUpdate(requete);
 			} catch (SQLException e) {
 			   //traitement de l'exception
-			} 
+			} finally {
+				stmt.close();
+			}
 		
 	}
 
