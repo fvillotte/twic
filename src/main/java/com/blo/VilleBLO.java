@@ -9,6 +9,8 @@ public interface VilleBLO {
 	public ArrayList<Ville> getInfoVille();
 
 	public void creerVille(Ville ville);
+	
+	public void modifierVille(Ville ville, String codeCommuneIni);
 		
 	
 

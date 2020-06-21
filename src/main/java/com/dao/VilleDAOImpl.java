@@ -43,14 +43,13 @@ public class VilleDAOImpl implements VilleDAO {
 		   
 		} catch (SQLException e) {
 		   //traitement de l'exception
-		}
+		} 
 		
 		return listVille;
 	}
 	
 	public void creerVille(Ville ville) {
 		
-		ResultSet results = null;
 		String requete = "INSERT INTO ville_france ('Code_commune_INSEE', 'Nom_commune', 'Libelle_acheminement', 'Code_postal', 'Latitude', 'Ligne_5', 'Longitude') "
 				+ "VALUES (" + ville.getCodeCommune() + ", " + ville.getNomCommune() + ", " + ville.getLibelleAcheminement() + ", " + ville.getCodePostal() + ", " + ville.getLatitude() + ", " + 
 				ville.getLigne_5() + ", " + ville.getLongitude() + ")";
@@ -62,6 +61,20 @@ public class VilleDAOImpl implements VilleDAO {
 		} catch (SQLException e) {
 		   //traitement de l'exception
 		}
+		
+	}
+	
+	public void modifierVille(Ville ville, String codeCommuneIni) {
+		
+		String requete = "UPDATE ville_france SET Code_commune_INSEE = 'ville.getCodeCommune()', Nom_commune = 'ville.getNomCommune()', Libelle_acheminement = 'ville.getLibelleAcheminement()', Code_postal = 'ville.getCodePostal()', Latitude = 'ville.getLatitude()', Ligne_5 = 'ville.getLigne_5()', Longitude = 'ville.getLongitude()' WHERE Code_commune_INSEE = codeCommuneIni ";
+		
+		try {
+			   Connection connection = JDBCConfiguration.getConnection();
+			   Statement stmt = connection.createStatement();
+			   stmt.executeUpdate(requete);
+			} catch (SQLException e) {
+			   //traitement de l'exception
+			}
 		
 	}
 

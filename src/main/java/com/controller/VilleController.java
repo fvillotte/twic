@@ -61,6 +61,17 @@ class VilleController {
 			villeBLOService.creerVille(ville);
 			
 		}
+		
+	// Methode PUT
+		@RequestMapping(value = "/ville", method = RequestMethod.PUT)
+		@ResponseBody
+		public void appelPut(@RequestBody Ville ville, String codeCommuneIni) {
+			System.out.println("Appel PUT");
+			
+			
+			villeBLOService.modifierVille(ville, codeCommuneIni);
+			
+		}
 	
 
 }

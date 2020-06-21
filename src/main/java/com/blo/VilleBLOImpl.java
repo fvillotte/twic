@@ -31,5 +31,9 @@ public class VilleBLOImpl implements VilleBLO{
 		villeDAO.creerVille(ville);
 	}
 	
+	public void modifierVille(Ville ville, String codeCommuneIni) {
+		villeDAO.modifierVille(ville, codeCommuneIni);
+	}
+	
 
 }
