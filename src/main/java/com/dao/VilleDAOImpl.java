@@ -19,13 +19,11 @@ public class VilleDAOImpl implements VilleDAO {
 		
 		Connection connection = JDBCConfiguration.getConnection();
 		
-		ResultSet results = null;
-		Statement stmt = null;
 		String requete = "SELECT * FROM ville_france";
 
 		try {
-		   stmt = connection.createStatement();
-		   results = stmt.executeQuery(requete);
+		   Statement stmt = connection.createStatement();
+		   ResultSet results = stmt.executeQuery(requete);
 		   
 		   while (results.next()) {
 			   Ville ville = new Ville();
@@ -55,12 +53,9 @@ public class VilleDAOImpl implements VilleDAO {
 				+ "VALUES (" + ville.getCodeCommune() + ", " + ville.getNomCommune() + ", " + ville.getLibelleAcheminement() + ", " + ville.getCodePostal() + ", " + ville.getLatitude() + ", " + 
 				ville.getLigne_5() + ", " + ville.getLongitude() + ")";
 
-		Connection connection = null;
-		Statement stmt = null;
-		
 		try {
-		   connection = JDBCConfiguration.getConnection();
-		   stmt = connection.createStatement();
+		   Connection connection = JDBCConfiguration.getConnection();
+		   Statement stmt = connection.createStatement();
 		   stmt.executeUpdate(requete);
 		} catch (SQLException e) {
 		   //traitement de l'exception
@@ -72,11 +67,9 @@ public class VilleDAOImpl implements VilleDAO {
 		
 		String requete = "UPDATE ville_france SET Code_commune_INSEE = 'ville.getCodeCommune()', Nom_commune = 'ville.getNomCommune()', Libelle_acheminement = 'ville.getLibelleAcheminement()', Code_postal = 'ville.getCodePostal()', Latitude = 'ville.getLatitude()', Ligne_5 = 'ville.getLigne_5()', Longitude = 'ville.getLongitude()' WHERE Code_commune_INSEE = codeCommuneIni ";
 		
-		Statement stmt = null;
-		
 		try {
 			   Connection connection = JDBCConfiguration.getConnection();
-			   stmt = connection.createStatement();
+			   Statement stmt = connection.createStatement();
 			   stmt.executeUpdate(requete);
 			} catch (SQLException e) {
 			   //traitement de l'exception
