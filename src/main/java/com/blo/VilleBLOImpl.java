@@ -1,5 +1,6 @@
 package com.blo;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class VilleBLOImpl implements VilleBLO{
 	@Autowired
 	private VilleDAO villeDAO;
 	
-	public ArrayList<Ville> getInfoVille() {
+	public ArrayList<Ville> getInfoVille() throws SQLException {
 		ArrayList<Ville> listVille = null;
 		
 		//TODO DAO
@@ -27,11 +28,11 @@ public class VilleBLOImpl implements VilleBLO{
 	}
 	
 	
-	public void creerVille(Ville ville) {
+	public void creerVille(Ville ville) throws SQLException {
 		villeDAO.creerVille(ville);
 	}
 	
-	public void modifierVille(Ville ville, String codeCommuneIni) {
+	public void modifierVille(Ville ville, String codeCommuneIni) throws SQLException {
 		villeDAO.modifierVille(ville, codeCommuneIni);
 	}
 	

@@ -3,6 +3,7 @@ package com.controller;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ class VilleController {
 	// Methode GET
 		@RequestMapping(value = "/ville", method = RequestMethod.GET)
 		@ResponseBody
-		public ArrayList<Ville> appelGet() {
+		public ArrayList<Ville> appelGet() throws SQLException {
 			System.out.println("Appel GET");
 			
 			
@@ -54,7 +55,7 @@ class VilleController {
 	// Methode POST
 		@RequestMapping(value = "/ville", method = RequestMethod.POST)
 		@ResponseBody
-		public void appelPost(@RequestBody Ville ville) {
+		public void appelPost(@RequestBody Ville ville) throws SQLException {
 			System.out.println("Appel POST");
 			
 			
@@ -65,7 +66,7 @@ class VilleController {
 	// Methode PUT
 		@RequestMapping(value = "/ville", method = RequestMethod.PUT)
 		@ResponseBody
-		public void appelPut(@RequestBody Ville ville, String codeCommuneIni) {
+		public void appelPut(@RequestBody Ville ville, String codeCommuneIni) throws SQLException {
 			System.out.println("Appel PUT");
 			
 			
