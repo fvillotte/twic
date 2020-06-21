@@ -14,7 +14,7 @@ import com.dto.Ville;
 @Repository
 public class VilleDAOImpl implements VilleDAO {
 	
-	public ArrayList<Ville> getInfoVille() throws SQLException {
+	public ArrayList<Ville> getInfoVille() {
 		ArrayList<Ville> listVille = new ArrayList<Ville>();
 		
 		Connection connection = JDBCConfiguration.getConnection();
@@ -44,15 +44,12 @@ public class VilleDAOImpl implements VilleDAO {
 		   
 		} catch (SQLException e) {
 		   //traitement de l'exception
-		} finally {
-			results.close();
-			stmt.close();
-		}
+		} 
 		
 		return listVille;
 	}
 	
-	public void creerVille(Ville ville) throws SQLException {
+	public void creerVille(Ville ville) {
 		
 		String requete = "INSERT INTO ville_france ('Code_commune_INSEE', 'Nom_commune', 'Libelle_acheminement', 'Code_postal', 'Latitude', 'Ligne_5', 'Longitude') "
 				+ "VALUES (" + ville.getCodeCommune() + ", " + ville.getNomCommune() + ", " + ville.getLibelleAcheminement() + ", " + ville.getCodePostal() + ", " + ville.getLatitude() + ", " + 
@@ -67,13 +64,11 @@ public class VilleDAOImpl implements VilleDAO {
 		   stmt.executeUpdate(requete);
 		} catch (SQLException e) {
 		   //traitement de l'exception
-		} finally {
-			stmt.close();
-		}
+		} 
 		
 	}
 	
-	public void modifierVille(Ville ville, String codeCommuneIni) throws SQLException {
+	public void modifierVille(Ville ville, String codeCommuneIni) {
 		
 		String requete = "UPDATE ville_france SET Code_commune_INSEE = 'ville.getCodeCommune()', Nom_commune = 'ville.getNomCommune()', Libelle_acheminement = 'ville.getLibelleAcheminement()', Code_postal = 'ville.getCodePostal()', Latitude = 'ville.getLatitude()', Ligne_5 = 'ville.getLigne_5()', Longitude = 'ville.getLongitude()' WHERE Code_commune_INSEE = codeCommuneIni ";
 		
@@ -85,9 +80,7 @@ public class VilleDAOImpl implements VilleDAO {
 			   stmt.executeUpdate(requete);
 			} catch (SQLException e) {
 			   //traitement de l'exception
-			} finally {
-				stmt.close();
-			}
+			} 
 		
 	}
 

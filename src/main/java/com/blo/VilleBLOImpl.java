@@ -16,7 +16,7 @@ public class VilleBLOImpl implements VilleBLO{
 	@Autowired
 	private VilleDAO villeDAO;
 	
-	public ArrayList<Ville> getInfoVille() throws SQLException {
+	public ArrayList<Ville> getInfoVille(){
 		ArrayList<Ville> listVille = null;
 		
 		//TODO DAO
@@ -28,11 +28,11 @@ public class VilleBLOImpl implements VilleBLO{
 	}
 	
 	
-	public void creerVille(Ville ville) throws SQLException {
+	public void creerVille(Ville ville) {
 		villeDAO.creerVille(ville);
 	}
 	
-	public void modifierVille(Ville ville, String codeCommuneIni) throws SQLException {
+	public void modifierVille(Ville ville, String codeCommuneIni) {
 		villeDAO.modifierVille(ville, codeCommuneIni);
 	}
 	
